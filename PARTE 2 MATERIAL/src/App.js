@@ -29,7 +29,7 @@ class App extends Component {
         this.checkAuthentication = this.checkAuthentication.bind(this);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.saveCredentials();
         this.checkAuthentication();
     }
@@ -46,7 +46,7 @@ class App extends Component {
             this.setState({
                 isLoggedIn:
                     JSON.parse(loggedIn) === true ? true : false
-            }, () => {console.log(this.state.isLoggedIn)});
+            }, () => { console.log(this.state.isLoggedIn) });
         } else {
             this.setState({ isLoggedIn: false });
         }
@@ -67,7 +67,10 @@ class App extends Component {
                     <div>
                         <ul>
                             <li><Link to="/">Login</Link></li>
-                            <li><Link to="/todo">Todo</Link></li>
+                            {
+                                this.state.isLoggedIn &&
+                                <li><Link to="/todo">Todo</Link></li>
+                            }
                         </ul>
 
                         <div>
